@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip calculator app</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="shortcut icon" href="./assets/images/favicon-32x32.png">
+    <script defer src="./js/main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1 class="main-heading">SPLI<br>TTER</h1>
+        <div class="calculator-container">
+            <div class="left-column">
+                <div class="left-column-contents">
+                    <form id="calculator-form" novalidate>
+                        <div class="bill-label-container">
+                            <label for="bill-input" class="bill-label">Bill</label>
+                        </div>
+                        <div class="bill-input-group">
+                            <span class="dollar-sign">$</span>
+                            <input id="bill-input" class="bill-input" name="bill-input" type="text" style="direction: rtl">
+                        </div>
+                        <div class="tip-options-container">
+                            <label for="tip" class="tip-label">Select Tip %:</label>
+                            <div class="tip-button-grid">
+                                <button id="tip5" class="tip-button" type="button" >5%</button>
+                                <button id="tip10" class="tip-button" type="button" >10%</button>
+                                <button id="tip15" class="tip-button" type="button" >15%</button>
+                                <button id="tip25" class="tip-button" type="button" >25%</button>
+                                <button id="tip50" class="tip-button" type="button" >50%</button>
+                                <button id="tipCustom" class="custom-button" type="button" >Custom</button>
+                                <input id="tipCustomInput" class="custom-button-input hide" type="text" class="hide" style="direction: rtl">
+                            </div>
+                        </div>
+                        <div class="number-of-people-label-container">
+                            <label for="number-of-people">Number of People</label>
+                            <span id="numberOfPeopleError" class="numberOfPeopleError hide">Can't be zero</span>
+                        </div>
+                        <div class="number-of-people-input-container">
+                            <img src="./assets/images/icon-person.svg" alt="">
+                            <input id="number-of-people-input" type="text" style="direction: rtl">
+                        </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="right-column">
+                    <div class="right-column-contents">
+                        <div class="right-column-top">
+                            <div class="tip-amount-container">
+                                <div class="tip-amount-headings">
+                                    <p class="right-column-headings">Tip Amount</p>
+                                    <p class="right-column-subheadings">/ person</p>
+                                </div>
+                                <div class="tip-amount-value-container">
+                                    <p id="tip-amount-value" class="right-column-values"></p>
+                                </div>
+                            </div>
+                            <div class="total-amount-container">
+                                <div class="total-amount-headings">
+                                    <p class="right-column-headings">Total Amount</p>
+                                    <p class="right-column-subheadings">/ person</p>
+                                </div>
+                                <div class="total-amount-value-container">
+                                    <p id="total-amount-value" class="right-column-values"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-column-bottom">
+                            <button class="reset-button" id="reset-button">RESET</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
