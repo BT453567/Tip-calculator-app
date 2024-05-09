@@ -10,7 +10,7 @@ const resetButton = document.getElementById("reset-button");
 
 const numberOfPeopleError = document.getElementById("numberOfPeopleError");
 
-var billAmountValue = 0;
+var billAmountValue = "0.00";
 var numberOfPeopleValue = 0;
 var tipSelected = false;
 var tipValue = 0;
@@ -24,7 +24,7 @@ function resetValues() {
     resetButton.classList.remove('reset-button-active');
     resetButton.disabled = true;
 
-    billAmountValue = 0;
+    billAmountValue = "0.00";
     numberOfPeopleValue = 0;
     tipSelected = false;
     tipValue = 0;
@@ -103,10 +103,24 @@ billAmount.addEventListener('focus', function() {
     makeResetButtonActive();
 });
 
-billAmount.addEventListener('input', function(event) {
-    billAmountValue = event.target.value;
-    canTipBeCalculated();
+billAmount.addEventListener('input', function() {
+
+    const twoDecimalPlaces = /^\d*\.?\d{0,2}$/;
+
+
+    if (twoDecimalPlaces.test(this.value)) {
+        billAmountValue = this.value;
+        canTipBeCalculated();
+    } else {
+        this.value = billAmountValue;
+    }
+
 });
+
+billAmount.addEventListener('blur', function(){
+    this.value = parseFloat(this.value).toFixed(2);
+});
+
 
 numberOfPeople.addEventListener('focus', function() {
     numberOfPeople.select();
@@ -114,8 +128,16 @@ numberOfPeople.addEventListener('focus', function() {
 });
 
 numberOfPeople.addEventListener('input', function(event) {
-    numberOfPeopleValue = event.target.value;
-    canTipBeCalculated();
+
+    const numbersOnly = /^[0-9]+$/;
+
+    if (numbersOnly.test(this.value)) {
+        numberOfPeopleValue = this.value;
+        canTipBeCalculated();
+    } else {
+        this.value = numberOfPeopleValue;
+    }
+    
 });
 
 
@@ -143,10 +165,13 @@ tipButtons.forEach(function(button) {
                 break;
             case "tip15":
                 tipValue = 15;
+                break;
             case "tip25":
                 tipValue = 25;
+                break;
             case "tip50":
                 tipValue = 50;
+                break;
         }
 
         tipSelected = true;
@@ -167,16 +192,27 @@ buttonCustom.addEventListener('click', function() {
     
     buttonCustomInput.value = "0";
     buttonCustomInput.select();
+    tipValue = this.value;
+    canTipBeCalculated();
 })
 
 buttonCustomInput.addEventListener('focus', function() {
     buttonCustomInput.select();
 });
 
-buttonCustomInput.addEventListener('input', function(event) {
-    tipSelected = true;
-    tipValue = event.target.value;
-    canTipBeCalculated();
+buttonCustomInput.addEventListener('input', function() {
+
+
+    const numbersOnly = /^[0-9]+$/;
+
+    if (numbersOnly.test(this.value)) {
+        tipSelected = true;
+        tipValue = this.value;
+        canTipBeCalculated();
+    } else {
+        this.value = tipValue;
+    }
+
 });
 
 resetButton.addEventListener('click', function() {
