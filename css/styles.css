@@ -134,7 +134,7 @@ input {
 }
 
 .tip-button:active {
-    border-color: var(--very-dark-cyan);
+    border-color: var(--strong-cyan);
 }
 
 .custom-button {
